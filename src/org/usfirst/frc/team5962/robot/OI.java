@@ -1,24 +1,18 @@
 package org.usfirst.frc.team5962.robot;
 
-import org.usfirst.frc.team5962.robot.commands.RunBoxIntake;
-import org.usfirst.frc.team5962.robot.commands.RunBoxOutake;
-import org.usfirst.frc.team5962.robot.commands.RunBoxSpin;
-import org.usfirst.frc.team5962.robot.commands.RunJoystickTank;
-import org.usfirst.frc.team5962.robot.commands.RunLeftWingDeploy;
-import org.usfirst.frc.team5962.robot.commands.RunRightWingDeploy;
-import org.usfirst.frc.team5962.robot.commands.RunWingDeploy;
-import org.usfirst.frc.team5962.robot.commands.StopBoxIntake;
-import org.usfirst.frc.team5962.robot.commands.StopBoxOutake;
-import org.usfirst.frc.team5962.robot.commands.StopBoxSpin;
-import org.usfirst.frc.team5962.robot.commands.StopWingDeploy;
-import org.usfirst.frc.team5962.robot.commands.Throttle;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team5962.robot.commands.RGBLedRedOff;
+import org.usfirst.frc.team5962.robot.commands.RGBLedRedOn;
+import org.usfirst.frc.team5962.robot.commands.RGBLedGreenOff;
+import org.usfirst.frc.team5962.robot.commands.RGBLedGreenOn;
+import org.usfirst.frc.team5962.robot.commands.RGBLedBlueOff;
+import org.usfirst.frc.team5962.robot.commands.RGBLedBlueOn;
+import org.usfirst.frc.team5962.robot.commands.RGBLedYellowOff;
+import org.usfirst.frc.team5962.robot.commands.RGBLedYellowOn;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -29,58 +23,32 @@ public class OI {
 	public Joystick joystickLeft;
 	public Joystick joystickRight;
 	public Joystick gamepad1;
-	public Joystick xBoxController;
 	
-	public Button throttle;
-	public Button jsIntake;
-	public Button jsOutake;
-	public Button jsBoxSpin;
-	public Button deployWings;
-	public Button deployLeftWing;
-	public Button deployRightWing;
-	
-	public Trigger intake;
-	public Trigger outake;
-	public Trigger xBoxClimbUp;
-	public Trigger xBoxClimbDown;
-	
-	private boolean throttleEnabled = false;
+	public Button rgbLedRed;
+	public Button rgbLedGreen;
+	public Button rgbLedBlue;
+	public Button rgbLedYellow;
 
 	public OI() {
 		joystickLeft = new Joystick(1);
 		joystickRight = new Joystick(2);
 		gamepad1 = new Joystick(0);
-		xBoxController = new Joystick(3);
 		
-		jsIntake = new JoystickButton(joystickLeft,1);
-		jsIntake.whenPressed(new RunBoxIntake());
-		jsIntake.whenReleased(new StopBoxIntake());
+		rgbLedRed = new JoystickButton(gamepad1, 2);
+		rgbLedRed.whenPressed(new RGBLedRedOn());
+		rgbLedRed.whenReleased(new RGBLedRedOff());
 		
-		jsOutake = new JoystickButton(joystickRight,1);
-		jsOutake.whenPressed(new RunBoxOutake());
-		jsOutake.whenReleased(new StopBoxOutake());
+		rgbLedGreen = new JoystickButton(gamepad1, 1);
+		rgbLedGreen.whenPressed(new RGBLedGreen());
+		rgbLedGreen.whenReleased(new RGBLedGreenf());
 		
-		throttle = new JoystickButton(joystickLeft, 3);
-		throttle.whenPressed(new Throttle());
+		rgbLedBlue = new JoystickButton(gamepad1, 3);
+		rgbLedBlue.whenPressed(new RGBLedBlueOn());
+		rgbLedBlue.whenReleased(new RGBLedBlueOff());
 		
-		jsBoxSpin = new JoystickButton(joystickLeft, 4);
-		jsBoxSpin.whenPressed(new RunBoxSpin());
-		jsBoxSpin.whenReleased(new StopBoxSpin());
-		
-		deployWings = new JoystickButton(gamepad1, 1);
-		deployWings.whenPressed(new RunWingDeploy());
-		deployWings.whenReleased(new StopWingDeploy());
-		
-		deployLeftWing = new JoystickButton(gamepad1, 2);
-		deployLeftWing.whenPressed(new RunLeftWingDeploy());
-		deployLeftWing.whenReleased(new StopWingDeploy());
-		
-		deployRightWing = new JoystickButton(gamepad1, 3);
-		deployRightWing.whenPressed(new RunRightWingDeploy());
-		deployRightWing.whenReleased(new StopWingDeploy());
-		
-		//deployWings = new JoystickButton(joystickRight, 3);
-		//deployWings.whenPressed(new RunWingDeploy());
+		rgbLedYellow = new JoystickButton(gamepad1, 41);
+		rgbLedYellow.whenPressed(new RGBLedYellowOn());
+		rgbLedYellow.whenReleased(new RGBLedYellowOff());
 
 	}
 	
@@ -118,31 +86,6 @@ public class OI {
 	
 	public double gamePadRightTrigger() {
 		return gamepad1.getRawAxis(3);
-	}
-	
-	public double xBoxLeftAxis() {
-		return xBoxController.getRawAxis(1);
-	}
-	
-	public double xBoxRightAxis() {
-		return xBoxController.getRawAxis(5);
-	}
-	
-	public double xBoxLeftTrigger() {
-		return xBoxController.getRawAxis(2);
-	}
-	
-	public double xBoxRightTrigger() {
-		return xBoxController.getRawAxis(3);
-	}
-	
-	public boolean isThrottleEnabled() {
-		return throttleEnabled;
-	}
-	
-	public void toggleThrottle() {
-		throttleEnabled = !throttleEnabled;
-		SmartDashboard.putString("throttle enabled", "" + throttleEnabled);
 	}
 	
 }

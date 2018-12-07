@@ -4,34 +4,13 @@ package org.usfirst.frc.team5962.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 
-import edu.wpi.first.wpilibj.CameraServer;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team5962.robot.commands.ResetGyro;
-import org.usfirst.frc.team5962.robot.commands.RunAutonomous;
-import org.usfirst.frc.team5962.robot.commands.Throttle;
-import org.usfirst.frc.team5962.robot.commands.RunBoxIntake;
-import org.usfirst.frc.team5962.robot.commands.RunBoxOutake;
-import org.usfirst.frc.team5962.robot.commands.RunClimber;
-import org.usfirst.frc.team5962.robot.commands.RunDropIntake;
-import org.usfirst.frc.team5962.robot.commands.RunLift;
-import org.usfirst.frc.team5962.robot.commands.Throttle;
-import org.usfirst.frc.team5962.robot.sensors.ADIS16448_IMU;
-import org.usfirst.frc.team5962.robot.sensors.AMT103_V;
-import org.usfirst.frc.team5962.robot.sensors.BagMotorEncoder;
-import org.usfirst.frc.team5962.robot.sensors.NeveRestGearMotorEncoder;
-import org.usfirst.frc.team5962.robot.sensors.RobotEncoder;
-import org.usfirst.frc.team5962.robot.sensors.RobotGyro;
-import org.usfirst.frc.team5962.robot.subsystems.Autonomous;
-import org.usfirst.frc.team5962.robot.subsystems.Drive;
-import org.usfirst.frc.team5962.robot.subsystems.Gyro;
+
 
 /* The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -41,50 +20,8 @@ import org.usfirst.frc.team5962.robot.subsystems.Gyro;
  */
 public class Robot extends IterativeRobot {
 
-	public static Command autonomousCommand;
 	public static OI oi;
 	public static Drive drive = new Drive();
-	public static Gyro gyro = new Gyro();
-	public static RobotGyro robotGyro = new RobotGyro();
-	public static RobotEncoder encoder = new RobotEncoder();
-	public static NeveRestGearMotorEncoder dropIntakeEncoder = new NeveRestGearMotorEncoder();
-//	public static BagMotorEncoder slideEncoder = new BagMotorEncoder();
-//	public static AMT103_V amt103 = new AMT103_V();
-//	public static RunBoxIntake runBoxIntake = new RunBoxIntake();
-//	public static RunBoxOutake runBoxOutake = new RunBoxOutake();
-//	public static ADIS16448_IMU robotGyro = new ADIS16448_IMU();
-	public static RunDropIntake runDropIntake = new RunDropIntake();
-	public static RunLift runLift = new RunLift();
-	public static RunClimber runClimber = new RunClimber();
-	
-	//Variables for Shuffleboard
-    SendableChooser<Location> position;
-	SendableChooser<Action> state;
-
-
-	//Enum for the Location of bot
-	public static enum Location {
-		
-		farRight,
-		switchRight,
-		middle,
-		vault,
-		switchLeft,
-		farLeft
-		
-	}
-	
-	//Enum for the Location of bot
-	public static enum Action {
-		
-		nothing,
-		crossLine,
-		exchange,
-		switch1,
-		switch2,
-		scale,
-		
-	}
 	
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -94,39 +31,6 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		RobotMap.init();
 		oi = new OI();
-		//RobotMap.myRobot.setMaxOutput(0.5);
-		//gyro.setUpResetGyro();
-		//RobotMap.myRobot.setMaxOutput(0.5);
-		robotGyro.resetGyro();
-		SmartDashboard.putData("Reset Gyro", new ResetGyro());
-
-		encoder.setNumberOfEncoders(1);
-		encoder.reset();
-		dropIntakeEncoder.reset();
-		RobotMap.dropBoxIntake.getSensorCollection().setQuadraturePosition(0, 10);
-//		slideEncoder.reset();
-//		amt103.reset();
-		
-		SmartDashboard.putNumber("Ultra Sonic distance", RobotMap.ultraSonic.getRange() );
-		
-		setUpAutonomousPosition();
-		setUpAutonomousAction();
-		
-		SmartDashboard.putNumber("P Value:", 0);
-		SmartDashboard.putNumber("I Value:", 0);
-		SmartDashboard.putNumber("D Value:", 0);
-		
-		//SmartDashboard.putNumber("P t Value:", 0);
-		//SmartDashboard.putNumber("I t Value:", 0);
-		//SmartDashboard.putNumber("D t Value:", 0);
-		
-
-
-		CameraServer.getInstance().startAutomaticCapture(0);
-		
-		//RobotMap.dropBoxIntake.getSensorCollection().
-		
-		
 	}
 
 	
@@ -157,15 +61,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		
-		Location location = (Location) position.getSelected();
-		Action action = (Action) state.getSelected();
-		
-		autonomousCommand = new RunAutonomous(location, action);
-		robotGyro.resetGyro();
-		
-		if (autonomousCommand != null) {
-			autonomousCommand.start();
-		}
 
 	}
 
@@ -173,25 +68,10 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
-		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Gyro ADIS - yaw", gyro.resetGyroAutomatic());
 	}
 
 	public void teleopInit() {
 		oi.startDriveCommand();
-		robotGyro.resetGyro();
-		
-		//Autonomous.pidDriveController.disable();
-		//Autonomous.pidTurningDriveController.disable();
-		
-		//runBoxIntake.start();
-		//runBoxOutake.start();
-		runClimber.start();
-		runDropIntake.start();
-		runLift.start();
-		
-		SmartDashboard.putNumber("Ultra Sonic distance", RobotMap.ultraSonic.getRange() );
-		
 	}
 
 	/**
@@ -199,11 +79,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Gyro ADIS - yaw", gyro.resetGyroAutomatic());
-		SmartDashboard.putString("throttle enabled", "" + oi.isThrottleEnabled());
-		SmartDashboard.putNumber("Ultra Sonic distance", RobotMap.ultraSonic.getRange() );
-//		SmartDashboard.putNumber("Ultra Sonic voltage", RobotMap.ultraSonic.getVoltage() );
-		
+	
 	}
 
 	/**
@@ -212,32 +88,5 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
-	
-	
-	//Shuffleboard setup for the location of the bot
-	private void setUpAutonomousPosition(){
-		
-		position = new SendableChooser<Location>();
-		position.addDefault("Far Right", Location.farRight);
-		position.addObject("Right side of Switch", Location.switchRight);
-		position.addObject("Middle", Location.middle);
-		position.addObject("In front of Vault", Location.vault);
-		position.addObject("Left side of Switch", Location.switchLeft);
-		position.addObject("Far Left", Location.farLeft);
-		SmartDashboard.putData("Location of robot", position);
-	}
-	
-	
-	//Shuffleboard setup for the action of the bot
-	private void setUpAutonomousAction() {
-		
-		state = new SendableChooser<Action>();
-		state.addDefault("Nothing", Action.nothing);
-		state.addObject("Cross the Line", Action.crossLine);
-		state.addObject("Exchange", Action.exchange);
-		state.addObject("One Switch", Action.switch1);
-		//state.addObject("Two Switches", Action.switch2);
-		//state.addObject("Scale", Action.scale);
-		SmartDashboard.putData("Action for Auto", state);
-	}
+
 }

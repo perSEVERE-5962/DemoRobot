@@ -14,8 +14,6 @@ public class Drive extends Subsystem {
 	}
 	public void joystickTank() {
 		RobotMap.myRobot.tankDrive(Robot.oi.joystickLeftAxis(), Robot.oi.joystickRightAxis());
-		//RobotMap.myRobot.tankDrive(robotOI.gamepadRightAxis(), robotOI.gamepadLeftAxis());
-		SmartDashboard.putString("Encoder Distance:", Robot.encoder.getDistance() * -1 + "");
 	}
 	@Override
 	protected void initDefaultCommand() {

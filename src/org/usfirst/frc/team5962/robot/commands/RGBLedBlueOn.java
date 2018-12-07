@@ -1,26 +1,23 @@
 package org.usfirst.frc.team5962.robot.commands;
 
 import org.usfirst.frc.team5962.robot.Robot;
-import org.usfirst.frc.team5962.robot.subsystems.BoxIntake;
+import org.usfirst.frc.team5962.robot.subsystems.WingDeploy;
 
 import edu.wpi.first.wpilibj.command.Command;
-
-public class RunBoxSpin extends Command{
+public class RGBLedBlueOn extends Command{
 
 	// Called just before this Command runs the first time
     protected void initialize() {
-    	
-    	BoxIntake.boxStop();
+       // set rgbBlue table entry to 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	BoxIntake.boxSpin();
+    	// set rgbBlue table entry to 255
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-
     	return true;
     }
 
