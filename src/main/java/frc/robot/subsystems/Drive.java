@@ -1,8 +1,8 @@
 
-package org.usfirst.frc.team5962.robot.subsystems;
+package frc.robot.subsystems;
 
-import org.usfirst.frc.team5962.robot.Robot;
-import org.usfirst.frc.team5962.robot.RobotMap;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 

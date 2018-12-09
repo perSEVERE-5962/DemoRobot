@@ -1,7 +1,8 @@
-package org.usfirst.frc.team5962.robot.commands;
+package frc.robot.commands;
 
-import org.usfirst.frc.team5962.robot.Robot;
-import org.usfirst.frc.team5962.robot.subsystems.JoystickThrottle;
+import frc.robot.Robot;
+import frc.robot.subsystems.JoystickThrottle;
+import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 

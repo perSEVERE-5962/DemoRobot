@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5962.robot;
+package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;

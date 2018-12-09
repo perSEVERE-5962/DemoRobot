@@ -1,5 +1,5 @@
 
-package org.usfirst.frc.team5962.robot;
+package frc.robot;
 
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import org.usfirst.frc.team5962.robot.subsystems.Drive;
+import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 

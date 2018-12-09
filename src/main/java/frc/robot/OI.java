@@ -1,21 +1,22 @@
-package org.usfirst.frc.team5962.robot;
+package frc.robot;
 
 
-import org.usfirst.frc.team5962.robot.commands.Throttle;
+//import frc.robot.commands.Throttle;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team5962.robot.commands.RGBLedRedOff;
-import org.usfirst.frc.team5962.robot.commands.RGBLedRedOn;
-import org.usfirst.frc.team5962.robot.commands.RGBLedGreenOff;
-import org.usfirst.frc.team5962.robot.commands.RGBLedGreenOn;
-import org.usfirst.frc.team5962.robot.commands.RGBLedBlueOff;
-import org.usfirst.frc.team5962.robot.commands.RGBLedBlueOn;
-import org.usfirst.frc.team5962.robot.commands.RGBLedYellowOff;
-import org.usfirst.frc.team5962.robot.commands.RGBLedYellowOn;
+import frc.robot.commands.RGBLedRedOff;
+import frc.robot.commands.RGBLedRedOn;
+import frc.robot.commands.RGBLedGreenOff;
+import frc.robot.commands.RGBLedGreenOn;
+import frc.robot.commands.RGBLedBlueOff;
+import frc.robot.commands.RGBLedBlueOn;
+import frc.robot.commands.RGBLedYellowOff;
+import frc.robot.commands.RGBLedYellowOn;
+import frc.robot.commands.RunJoystickTank;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -28,11 +29,40 @@ public class OI {
 	public Joystick gamepad1;
 	public Joystick xBoxController;
 
+	public Button rgbLedRed;
+	public Button rgbLedGreen;
+	public Button rgbLedBlue;
+	public Button rgbLedYellow;
+
+	public boolean rgbRedOn = false;
+	public boolean rgbGreenOn = false;
+	public boolean rgbBlueOn = false;
+	public boolean rgbYellowOn = false;
+
 	public OI() {
 		joystickLeft = new Joystick(1);
 		joystickRight = new Joystick(2);
 		gamepad1 = new Joystick(0);
 		xBoxController = new Joystick(3);
+
+		rgbLedRed = new JoystickButton(gamepad1, 2);
+		rgbLedRed.whenPressed(new RGBLedRedOn());
+		rgbLedRed.whenReleased(new RGBLedRedOff());
+		
+		
+		rgbLedGreen = new JoystickButton(gamepad1, 1);
+		rgbLedGreen.whenPressed(new RGBLedGreenOn());
+		rgbLedGreen.whenReleased(new RGBLedGreenOff());
+		
+		
+		rgbLedBlue = new JoystickButton(gamepad1, 3);
+		rgbLedBlue.whenPressed(new RGBLedBlueOn());
+		rgbLedBlue.whenReleased(new RGBLedBlueOff());
+		
+		
+		rgbLedYellow = new JoystickButton(gamepad1, 4);
+		rgbLedYellow.whenPressed(new RGBLedYellowOn());
+		rgbLedYellow.whenReleased(new RGBLedYellowOff());	
 	}
 	
 	public void startDriveCommand() {
@@ -86,4 +116,5 @@ public class OI {
 	public double xBoxRightTrigger() {
 		return xBoxController.getRawAxis(3);
 	}
+
 }

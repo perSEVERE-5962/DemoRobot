@@ -1,23 +1,30 @@
-package org.usfirst.frc.team5962.robot.commands;
+package frc.robot.commands;
 
-import org.usfirst.frc.team5962.robot.Robot;
+import frc.robot.Robot;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class RGBLedRedOff extends Command{
+public class RGBLedBlueOff extends Command{
+
 
 	// Called just before this Command runs the first time
     protected void initialize() {
-        // set rgbRed table entry to 0;
+        NetworkTableInstance inst = NetworkTableInstance.getDefault();
+        NetworkTable table = inst.getTable("rgbled");
+        NetworkTableEntry blueEntry = table.getEntry("blue");
+        blueEntry.setDouble(0);   
+        Robot.oi.rgbBlueOn = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        // set rgbRed table entry to 0;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return false;
+    	return true;
     }
 
     // Called once after isFinished returns true
