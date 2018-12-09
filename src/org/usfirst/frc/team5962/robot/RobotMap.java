@@ -56,22 +56,7 @@ public class RobotMap {
 	public static DifferentialDrive myRobot;
 	public static SpeedController leftDrive;
 	public static SpeedController rightDrive;
-	
-	public static TalonSRX leftBoxIntake;
-	public static TalonSRX rightBoxIntake;
-	
-	public static TalonSRX dropBoxIntake;
-	public static VictorSP lift;
-	public static VictorSP climber;
-	
-	public static RobotUltrasonicAnalog ultraSonic;
-	
-	public static DigitalInput limitSwitchSlide;
-	public static DigitalInput limitDropIntake;
-	
-	public static Relay wingRelay;
-	
-	
+
 	public static void init() {
 
 		robotLeftTalon = new WPI_TalonSRX(23);
@@ -85,22 +70,6 @@ public class RobotMap {
 		leftDrive.setInverted(true);
 		rightDrive.setInverted(true);
 		myRobot = new DifferentialDrive(leftDrive, rightDrive);
-		leftBoxIntake = new TalonSRX(12);
-		leftBoxIntake.setInverted(true);
-		rightBoxIntake = new TalonSRX(13);
 		
-		dropBoxIntake = new TalonSRX(14);
-		lift = new VictorSP(PWM_CHANNEL_4);
-		climber = new VictorSP(PWM_CHANNEL_5);
-		
-		dropBoxIntake.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-		dropBoxIntake.getSensorCollection().setQuadraturePosition(0, 10);
-		
-		ultraSonic = new RobotUltrasonicAnalog(0);
-		limitSwitchSlide = new DigitalInput(DIO_CHANNEL_8);
-		limitDropIntake = new DigitalInput(DIO_CHANNEL_9);
-		
-		wingRelay = new Relay(0);
-
 	}
 }

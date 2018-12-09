@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5962.robot.commands;
 
 import org.usfirst.frc.team5962.robot.Robot;
-import org.usfirst.frc.team5962.robot.subsystems.Joystick;
+import org.usfirst.frc.team5962.robot.subsystems.JoystickThrottle;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -22,7 +22,7 @@ public class RunJoystickTank extends Command {
     	
   
     	Robot.drive.joystickTank();
-    	Joystick.throttle();
+    	JoystickThrottle.Speed();
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -1,0 +1,6 @@
+/bin/
+/build/
+/.wpilib/
+/.gradle/
+/.settings/
+/.vscode/
