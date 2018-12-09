@@ -1,16 +1,6 @@
 package org.usfirst.frc.team5962.robot;
 
-import org.usfirst.frc.team5962.robot.commands.RunBoxIntake;
-import org.usfirst.frc.team5962.robot.commands.RunBoxOutake;
-import org.usfirst.frc.team5962.robot.commands.RunBoxSpin;
-import org.usfirst.frc.team5962.robot.commands.RunJoystickTank;
-import org.usfirst.frc.team5962.robot.commands.RunLeftWingDeploy;
-import org.usfirst.frc.team5962.robot.commands.RunRightWingDeploy;
-import org.usfirst.frc.team5962.robot.commands.RunWingDeploy;
-import org.usfirst.frc.team5962.robot.commands.StopBoxIntake;
-import org.usfirst.frc.team5962.robot.commands.StopBoxOutake;
-import org.usfirst.frc.team5962.robot.commands.StopBoxSpin;
-import org.usfirst.frc.team5962.robot.commands.StopWingDeploy;
+
 import org.usfirst.frc.team5962.robot.commands.Throttle;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -30,58 +20,12 @@ public class OI {
 	public Joystick joystickRight;
 	public Joystick gamepad1;
 	public Joystick xBoxController;
-	
-	public Button throttle;
-	public Button jsIntake;
-	public Button jsOutake;
-	public Button jsBoxSpin;
-	public Button deployWings;
-	public Button deployLeftWing;
-	public Button deployRightWing;
-	
-	public Trigger intake;
-	public Trigger outake;
-	public Trigger xBoxClimbUp;
-	public Trigger xBoxClimbDown;
-	
-	private boolean throttleEnabled = false;
 
 	public OI() {
 		joystickLeft = new Joystick(1);
 		joystickRight = new Joystick(2);
 		gamepad1 = new Joystick(0);
 		xBoxController = new Joystick(3);
-		
-		jsIntake = new JoystickButton(joystickLeft,1);
-		jsIntake.whenPressed(new RunBoxIntake());
-		jsIntake.whenReleased(new StopBoxIntake());
-		
-		jsOutake = new JoystickButton(joystickRight,1);
-		jsOutake.whenPressed(new RunBoxOutake());
-		jsOutake.whenReleased(new StopBoxOutake());
-		
-		throttle = new JoystickButton(joystickLeft, 3);
-		throttle.whenPressed(new Throttle());
-		
-		jsBoxSpin = new JoystickButton(joystickLeft, 4);
-		jsBoxSpin.whenPressed(new RunBoxSpin());
-		jsBoxSpin.whenReleased(new StopBoxSpin());
-		
-		deployWings = new JoystickButton(gamepad1, 1);
-		deployWings.whenPressed(new RunWingDeploy());
-		deployWings.whenReleased(new StopWingDeploy());
-		
-		deployLeftWing = new JoystickButton(gamepad1, 2);
-		deployLeftWing.whenPressed(new RunLeftWingDeploy());
-		deployLeftWing.whenReleased(new StopWingDeploy());
-		
-		deployRightWing = new JoystickButton(gamepad1, 3);
-		deployRightWing.whenPressed(new RunRightWingDeploy());
-		deployRightWing.whenReleased(new StopWingDeploy());
-		
-		//deployWings = new JoystickButton(joystickRight, 3);
-		//deployWings.whenPressed(new RunWingDeploy());
-
 	}
 	
 	public void startDriveCommand() {
@@ -135,14 +79,4 @@ public class OI {
 	public double xBoxRightTrigger() {
 		return xBoxController.getRawAxis(3);
 	}
-	
-	public boolean isThrottleEnabled() {
-		return throttleEnabled;
-	}
-	
-	public void toggleThrottle() {
-		throttleEnabled = !throttleEnabled;
-		SmartDashboard.putString("throttle enabled", "" + throttleEnabled);
-	}
-	
 }
