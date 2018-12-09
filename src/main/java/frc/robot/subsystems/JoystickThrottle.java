@@ -1,10 +1,6 @@
-package org.usfirst.frc.team5962.robot.subsystems;
-
-import org.usfirst.frc.team5962.robot.Robot;
-import org.usfirst.frc.team5962.robot.RobotMap;
+package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class JoystickThrottle extends Subsystem {
 

@@ -1,10 +1,9 @@
 
-package org.usfirst.frc.team5962.robot.subsystems;
+package frc.robot.subsystems;
 
-import org.usfirst.frc.team5962.robot.Robot;
-import org.usfirst.frc.team5962.robot.RobotMap;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drive extends Subsystem {
 	
@@ -12,10 +11,15 @@ public class Drive extends Subsystem {
 	public Drive() {
 	
 	}
+
 	public void joystickTank() {
 		RobotMap.myRobot.tankDrive(Robot.oi.joystickLeftAxis(), Robot.oi.joystickRightAxis());
-		
 	}
+
+	public void gameTank() {
+		RobotMap.myRobot.tankDrive(Robot.oi.xBoxController.getRawAxis(1), Robot.oi.xBoxController.getRawAxis(5));
+	}
+
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub

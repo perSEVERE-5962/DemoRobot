@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5962.robot;
+package frc.robot;
 
 import edu.wpi.first.wpilibj.SpeedController;
 

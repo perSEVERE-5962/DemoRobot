@@ -1,14 +1,15 @@
-package org.usfirst.frc.team5962.robot.commands;
+package frc.robot.commands;
 
-import org.usfirst.frc.team5962.robot.Robot;
-import org.usfirst.frc.team5962.robot.subsystems.JoystickThrottle;
-
+import frc.robot.Robot;
+import frc.robot.subsystems.JoystickThrottle;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class RunJoystickTank extends Command {
+/**
+ *
+ */
+public class RunGameTank extends Command {
 
-	//private JoystickThrottle throttle = new JoystickThrottle();
-	public  RunJoystickTank() {
+    public RunGameTank() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.drive);
     }
@@ -19,20 +20,13 @@ public class RunJoystickTank extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-  
-    	Robot.drive.joystickTank();
+    	Robot.drive.gameTank();
     	JoystickThrottle.Speed();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	 //Robot.oi.gameArcadeMode.get()
-        	//     || Robot.oi.gameXArcadeMode.get()
-        		// || Robot.oi.joystickArcadeModeRight.get()
-        		 //|| Robot.oi.joystickArcadeModeLeft.get()
-        		 //|| Robot.oi.gameXTankMode.get()
-       return false;// return  Robot.oi.joystickTankMode.get();
+    	return false;
     }
 
     // Called once after isFinished returns true
@@ -45,12 +39,3 @@ public class RunJoystickTank extends Command {
     	end();
     }
 }
-
-	
-	
-	
-	
-	
-	
-
-

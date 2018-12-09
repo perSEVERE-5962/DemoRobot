@@ -1,14 +1,9 @@
-package org.usfirst.frc.team5962.robot;
+package frc.robot;
 
-
-import org.usfirst.frc.team5962.robot.commands.Throttle;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.RunJoystickTank;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -29,8 +24,8 @@ public class OI {
 	}
 	
 	public void startDriveCommand() {
-	Command command = new RunJoystickTank();
-	command.start();
+		Command command = new RunJoystickTank();
+		command.start();
 	}
 	
 	public double joystickLeftAxis() {
@@ -79,4 +74,5 @@ public class OI {
 	public double xBoxRightTrigger() {
 		return xBoxController.getRawAxis(3);
 	}
+
 }
