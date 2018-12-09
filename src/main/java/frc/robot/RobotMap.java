@@ -32,8 +32,6 @@ public class RobotMap {
 		robotRightVictor.follow(robotRightTalon,FollowerType.PercentOutput);
 		leftDrive = new MultiSpeedController(robotLeftTalon, robotLeftTalon);
 		rightDrive = new MultiSpeedController(robotRightTalon, robotRightTalon);
-		//leftDrive.setInverted(true);
-		//rightDrive.setInverted(true);
 		myRobot = new DifferentialDrive(leftDrive, rightDrive);
 	}
 }
