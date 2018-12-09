@@ -1,5 +1,8 @@
 package org.usfirst.frc.team5962.robot;
 
+
+import org.usfirst.frc.team5962.robot.commands.Throttle;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -23,33 +26,13 @@ public class OI {
 	public Joystick joystickLeft;
 	public Joystick joystickRight;
 	public Joystick gamepad1;
-	
-	public Button rgbLedRed;
-	public Button rgbLedGreen;
-	public Button rgbLedBlue;
-	public Button rgbLedYellow;
+	public Joystick xBoxController;
 
 	public OI() {
 		joystickLeft = new Joystick(1);
 		joystickRight = new Joystick(2);
 		gamepad1 = new Joystick(0);
-		
-		rgbLedRed = new JoystickButton(gamepad1, 2);
-		rgbLedRed.whenPressed(new RGBLedRedOn());
-		rgbLedRed.whenReleased(new RGBLedRedOff());
-		
-		rgbLedGreen = new JoystickButton(gamepad1, 1);
-		rgbLedGreen.whenPressed(new RGBLedGreen());
-		rgbLedGreen.whenReleased(new RGBLedGreenf());
-		
-		rgbLedBlue = new JoystickButton(gamepad1, 3);
-		rgbLedBlue.whenPressed(new RGBLedBlueOn());
-		rgbLedBlue.whenReleased(new RGBLedBlueOff());
-		
-		rgbLedYellow = new JoystickButton(gamepad1, 41);
-		rgbLedYellow.whenPressed(new RGBLedYellowOn());
-		rgbLedYellow.whenReleased(new RGBLedYellowOff());
-
+		xBoxController = new Joystick(3);
 	}
 	
 	public void startDriveCommand() {
@@ -88,4 +71,19 @@ public class OI {
 		return gamepad1.getRawAxis(3);
 	}
 	
+	public double xBoxLeftAxis() {
+		return xBoxController.getRawAxis(1);
+	}
+	
+	public double xBoxRightAxis() {
+		return xBoxController.getRawAxis(5);
+	}
+	
+	public double xBoxLeftTrigger() {
+		return xBoxController.getRawAxis(2);
+	}
+	
+	public double xBoxRightTrigger() {
+		return xBoxController.getRawAxis(3);
+	}
 }
