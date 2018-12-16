@@ -1,9 +1,13 @@
 package frc.robot;
 
 
+import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.commands.RunJoystickTank;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -15,17 +19,35 @@ public class OI {
 	public Joystick joystickRight;
 	public Joystick gamepad1;
 	public Joystick xBoxController;
-
+	public JoystickButton xBoxGreen;
+	public JoystickButton xBoxRed;
+	public JoystickButton xBoxBlue;
+	public boolean redOn = false;
+	public boolean greenOn = false;
+	public boolean blueOn = false;
 	public OI() {
 		joystickLeft = new Joystick(1);
 		joystickRight = new Joystick(2);
 		gamepad1 = new Joystick(0);
 		xBoxController = new Joystick(3);
+		xBoxGreen = new JoystickButton(gamepad1, 1);
+		xBoxGreen.whenPressed(new RunGreenOn());
+		xBoxGreen.whenReleased(new RunGreenOff());
+		xBoxRed = new JoystickButton(gamepad1 , 2);
+		xBoxRed.whenPressed(new RunRedOn());
+		xBoxRed.whenReleased(new RunRedOff());
+		xBoxBlue = new JoystickButton(gamepad1 , 3);
+		xBoxBlue.whenPressed(new RunBlueOn());
+		xBoxBlue.whenReleased(new RunBlueOff());
+		/*xBoxYellow = new JoystickButton(gamepad1 , 4);
+		xBoxYellow.whenPressed();
+		xBoxYellow.whenReleased();  */
+
 	}
 	
 	public void startDriveCommand() {
-		Command command = new RunJoystickTank();
-		command.start();
+	Command command = new RunJoystickTank();
+	command.start();
 	}
 	
 	public double joystickLeftAxis() {
@@ -70,9 +92,8 @@ public class OI {
 	public double xBoxLeftTrigger() {
 		return xBoxController.getRawAxis(2);
 	}
-	
+
 	public double xBoxRightTrigger() {
 		return xBoxController.getRawAxis(3);
 	}
-
 }
