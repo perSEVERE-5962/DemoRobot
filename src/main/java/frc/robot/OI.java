@@ -96,4 +96,7 @@ public class OI {
 	public double xBoxRightTrigger() {
 		return xBoxController.getRawAxis(3);
 	}
+	public double getRawAxis(int axis){
+		return gamepad1.getRawAxis(axis);
+	}
 }
