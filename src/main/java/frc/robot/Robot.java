@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import frc.robot.commands.RunGreenOn;
+import frc.robot.subsystems.*;
 
 
 
@@ -56,7 +58,26 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
-		Scheduler.getInstance().run();		
+		Scheduler.getInstance().run();
+		double value=oi.getRawAxis(1);
+		int newvalue=0;
+		if (value==1){
+		newvalue=0;	
+		}else if(value>0.34){
+			newvalue=50;
+		}
+		else if(value==-1){
+			newvalue=255;
+		}
+		else if(value<-0.34){
+			newvalue=197;
+		}
+		else{
+			newvalue=127;
+		}
+		ChangeLedValue led=new ChangeLedValue();
+		led.setvalue("green",newvalue
+		);	
 	}
 
 	/**
