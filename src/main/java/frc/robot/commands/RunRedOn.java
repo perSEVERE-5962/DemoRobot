@@ -14,15 +14,15 @@ public class RunRedOn extends Command{
         NetworkTableInstance inst =  NetworkTableInstance.getDefault();
         NetworkTable table = inst.getTable("rgbled");
         NetworkTableEntry entry = table.getEntry("red");
-        entry.setValue(255);
-        Robot.oi.greenOn = true;
+        entry.setValue(100);
+        Robot.oi.redOn = true;
         
     }
 
     protected void execute(){
     }
     protected boolean isFinished(){
-        return (Robot.oi.greenOn == false);
+        return (Robot.oi.redOn == false);
     }
     protected void end(){
 

@@ -59,25 +59,26 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+
+		dimLED();
+	}
+
+	private void dimLED() {
 		double value=oi.getRawAxis(1);
 		int newvalue=0;
 		if (value==1){
-		newvalue=0;	
-		}else if(value>0.34){
+			newvalue=0;	
+		} else if(value>0.34){
 			newvalue=50;
-		}
-		else if(value==-1){
+		} else if(value==-1){
 			newvalue=255;
-		}
-		else if(value<-0.34){
+		} else if(value<-0.34){
 			newvalue=197;
-		}
-		else{
+		} else {
 			newvalue=127;
 		}
 		ChangeLedValue led=new ChangeLedValue();
-		led.setvalue("green",newvalue
-		);	
+		led.setvalue("green",newvalue);	
 	}
 
 	/**

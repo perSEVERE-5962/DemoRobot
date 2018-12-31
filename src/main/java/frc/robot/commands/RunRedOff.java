@@ -15,7 +15,7 @@ public class RunRedOff extends Command{
         NetworkTable table = inst.getTable("rgbled");
         NetworkTableEntry entry = table.getEntry("red");
         entry.setValue(0);
-        Robot.oi.greenOn = false;
+        Robot.oi.redOn = false;
         
     }
 

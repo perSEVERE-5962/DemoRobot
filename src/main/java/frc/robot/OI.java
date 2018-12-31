@@ -38,11 +38,7 @@ public class OI {
 		xBoxRed.whenReleased(new RunRedOff());
 		xBoxBlue = new JoystickButton(gamepad1 , 3);
 		xBoxBlue.whenPressed(new RunBlueOn());
-		xBoxBlue.whenReleased(new RunBlueOff());
-		/*xBoxYellow = new JoystickButton(gamepad1 , 4);
-		xBoxYellow.whenPressed();
-		xBoxYellow.whenReleased();  */
-
+		xBoxBlue.whenReleased(new RunBlueOff());	
 	}
 	
 	public void startDriveCommand() {
