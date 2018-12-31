@@ -15,7 +15,7 @@ public class RunBlueOff extends Command{
         NetworkTable table = inst.getTable("rgbled");
         NetworkTableEntry entry = table.getEntry("blue");
         entry.setValue(0);
-        Robot.oi.greenOn = false;
+        Robot.oi.blueOn = false;
         
     }
 
