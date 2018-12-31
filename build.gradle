@@ -31,10 +31,10 @@ deploy {
 dependencies {
     compile wpilib()
     compile ctre()
-    compile navx()
+    //compile navx()
     
-compile fileTree(dir: "C:/Users/0000y/wpilib/user/java/lib", include: "**/*.jar")
-compile fileTree(dir: "C:/Users/0000y/wpilib/java/current/lib", include: "**/*.jar")
+    compile fileTree(dir: "${System.env.WPILIB}/user/java/lib", include: "jsch-0.1.54.jar")
+    //compile fileTree(dir: "C:/Users/0000y/wpilib/java/current/lib", include: "**/*.jar")
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
