@@ -6,15 +6,13 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
-
+import frc.robot.subsystems.*;
 public class RunRedOn extends Command{
   
  
-    protected void initialize(){
-        NetworkTableInstance inst =  NetworkTableInstance.getDefault();
-        NetworkTable table = inst.getTable("rgbled");
-        NetworkTableEntry entry = table.getEntry("red");
-        entry.setValue(255);
+    public void initialize(){
+        ChangeLedValue rgbLed = new ChangeLedValue();
+        rgbLed.setValue("red" , 255);
         Robot.oi.greenOn = true;
         
     }

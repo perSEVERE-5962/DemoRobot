@@ -1,12 +1,19 @@
 
 package frc.robot;
 
-
+import frc.robot.subsystems.ChangeLedValue;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.commands.RunBlueOn;
+import frc.robot.commands.RunBlueOff;
+import frc.robot.commands.RunGreenOff;
+import frc.robot.commands.RunGreenOn;
+import frc.robot.commands.RunRedOff;
+import frc.robot.commands.RunRedOn;
 import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.OI;
 
 
 /* The VM is configured to automatically run this class, and to call the
@@ -50,6 +57,7 @@ public class Robot extends IterativeRobot {
 
 	public void teleopInit() {
 		oi.startDriveCommand();	
+		SmartDashboard.putString("State ","" ); 
 	}
 
 	/**
@@ -57,6 +65,32 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();		
+		
+		oi.getRawAxis(5);	
+		ledCommands();	
+		
+	}
+
+	private void ledCommands(){
+		ChangeLedValue rgbLed = new ChangeLedValue();
+        
+		if(oi.getRawAxis(5)> 0.34){
+
+			rgbLed.setValue("red" ,  0);
+			rgbLed.setValue("green" , 0);	
+			rgbLed.setValue("blue" , 255);	
+		}
+		else if(oi.getRawAxis(5) < (-0.34)){
+			rgbLed.setValue("blue" ,  0);
+			rgbLed.setValue("red " ,  0);
+			rgbLed.setValue("green" , 255);
+		}
+		else{
+			rgbLed.setValue("green" , 0);
+			rgbLed.setValue("blue" ,  0);
+			rgbLed.setValue("red" , 255);
+		
+		}
 	}
 
 	/**

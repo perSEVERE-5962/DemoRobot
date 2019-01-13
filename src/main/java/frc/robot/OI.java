@@ -25,6 +25,11 @@ public class OI {
 	public boolean redOn = false;
 	public boolean greenOn = false;
 	public boolean blueOn = false;
+	
+	public double getRawAxis(int axis){
+		return gamepad1.getRawAxis(axis);
+	}
+
 	public OI() {
 		joystickLeft = new Joystick(1);
 		joystickRight = new Joystick(2);
@@ -42,6 +47,8 @@ public class OI {
 		/*xBoxYellow = new JoystickButton(gamepad1 , 4);
 		xBoxYellow.whenPressed();
 		xBoxYellow.whenReleased();  */
+		//axis x4 and y5
+
 
 	}
 	
