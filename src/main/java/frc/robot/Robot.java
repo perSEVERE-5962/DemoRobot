@@ -2,22 +2,21 @@
 package frc.robot;
 
 
-import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.Drive;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import frc.robot.commands.RunGreenOn;
 import frc.robot.subsystems.*;
 
 
 
 /* The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
+ * functions corresponding to each mode, as described in the TimedRobot
  * documentation. If you change the name of this class or the package after
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class Robot extends IterativeRobot {
+public class Robot extends TimedRobot {
 
 	public static OI oi;
 	public static Drive drive = new Drive();
@@ -32,24 +31,40 @@ public class Robot extends IterativeRobot {
 		RobotMap.init();
 		oi = new OI();
 	}
+  	/**
+   	 * This function is called every robot packet, no matter the mode. Use
+   	 * this for items like diagnostics that you want ran during disabled,
+   	 * autonomous, teleoperated and test.
+   	 *
+   	 * <p>This runs after the mode specific periodic functions, but before
+   	 * LiveWindow and SmartDashboard integrated updating.
+   	 */
+	@Override
+	public void robotPeriodic() {
+	}
 
+	@Override
 	public void disabledInit() {
 	}
 
+	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
+	@Override
 	public void autonomousInit() {
 	}
 
 	/**
 	 * This function is called periodically during autonomous
 	 */
+	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
+	@Override
 	public void teleopInit() {
 		oi.startDriveCommand();	
 	}
@@ -57,6 +72,7 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is called periodically during operator control
 	 */
+	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
@@ -84,8 +100,8 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is called periodically during test mode
 	 */
+	@Override
 	public void testPeriodic() {
-		LiveWindow.run();
 	}
 	
 }
