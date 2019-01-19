@@ -5,7 +5,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.Drive;
-import frc.robot.commands.RunGreenOn;
 import frc.robot.subsystems.*;
 
 
@@ -20,7 +19,8 @@ public class Robot extends TimedRobot {
 
 	public static OI oi;
 	public static Drive drive = new Drive();
-	
+	public static SolenoidSubsystem solSub;	
+
 	/**
 	 * This function is run when the robot is first started up and should be used
 	 * for any initialization code.
@@ -30,7 +30,9 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		RobotMap.init();
 		oi = new OI();
+		solSub = new SolenoidSubsystem();
 	}
+	
   	/**
    	 * This function is called every robot packet, no matter the mode. Use
    	 * this for items like diagnostics that you want ran during disabled,
