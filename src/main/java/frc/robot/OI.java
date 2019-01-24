@@ -26,8 +26,15 @@ public class OI {
 	public boolean redOn = false;
 	public boolean greenOn = false;
 	public boolean blueOn = false;
+<<<<<<< HEAD
 	SolenoidCommand solenoidCommand = new SolenoidCommand();
 
+=======
+	
+	public double getRawAxis(int axis){
+		return gamepad1.getRawAxis(axis);
+	}
+>>>>>>> YashP
 
 	public OI() {
 		joystickLeft = new Joystick(1);
@@ -42,9 +49,19 @@ public class OI {
 		xBoxRed.whenReleased(new RunRedOff());
 		xBoxBlue = new JoystickButton(gamepad1 , 3);
 		xBoxBlue.whenPressed(new RunBlueOn());
+<<<<<<< HEAD
 		xBoxBlue.whenReleased(new RunBlueOff());	
 		xBoxYellow = new JoystickButton(gamepad1, 4);
 		xBoxYellow.toggleWhenPressed(solenoidCommand);
+=======
+		xBoxBlue.whenReleased(new RunBlueOff());
+		/*xBoxYellow = new JoystickButton(gamepad1 , 4);
+		xBoxYellow.whenPressed();
+		xBoxYellow.whenReleased();  */
+		//axis x4 and y5
+
+
+>>>>>>> YashP
 	}
 	
 	public void startDriveCommand() {

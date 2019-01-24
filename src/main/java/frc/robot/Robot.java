@@ -1,8 +1,13 @@
 
 package frc.robot;
 
+<<<<<<< HEAD
 
 import edu.wpi.first.wpilibj.TimedRobot;
+=======
+import frc.robot.subsystems.ChangeLedValue;
+import edu.wpi.first.wpilibj.IterativeRobot;
+>>>>>>> YashP
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.RunBlueOn;
 import frc.robot.commands.RunBlueOff;
@@ -11,7 +16,13 @@ import frc.robot.commands.RunGreenOn;
 import frc.robot.commands.RunRedOff;
 import frc.robot.commands.RunRedOn;
 import frc.robot.subsystems.Drive;
+<<<<<<< HEAD
 import frc.robot.subsystems.*;
+=======
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.OI;
+>>>>>>> YashP
 
 
 /* The VM is configured to automatically run this class, and to call the
@@ -82,6 +93,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+<<<<<<< HEAD
 		Scheduler.getInstance().run();
 
 		dimLED();
@@ -103,6 +115,35 @@ public class Robot extends TimedRobot {
 		}
 		ChangeLedValue led=new ChangeLedValue();
 		led.setvalue("green",newvalue);	
+=======
+		Scheduler.getInstance().run();		
+		
+		oi.getRawAxis(5);	
+		ledCommands();	
+		
+	}
+
+	private void ledCommands(){
+		ChangeLedValue rgbLed = new ChangeLedValue();
+        
+		if(oi.getRawAxis(5)> 0.34){
+
+			rgbLed.setValue("red" ,  0);
+			rgbLed.setValue("green" , 0);	
+			rgbLed.setValue("blue" , 255);	
+		}
+		else if(oi.getRawAxis(5) < (-0.34)){
+			rgbLed.setValue("blue" ,  0);
+			rgbLed.setValue("red " ,  0);
+			rgbLed.setValue("green" , 255);
+		}
+		else{
+			rgbLed.setValue("green" , 0);
+			rgbLed.setValue("blue" ,  0);
+			rgbLed.setValue("red" , 255);
+		
+		}
+>>>>>>> YashP
 	}
 
 	/**

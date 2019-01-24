@@ -10,12 +10,19 @@ import frc.robot.subsystems.*;
 public class RunRedOn extends Command{
   
  
+<<<<<<< HEAD
     protected void initialize(){
         NetworkTableInstance inst =  NetworkTableInstance.getDefault();
         NetworkTable table = inst.getTable("rgbled");
         NetworkTableEntry entry = table.getEntry("red");
         entry.setValue(100);
         Robot.oi.redOn = true;
+=======
+    public void initialize(){
+        ChangeLedValue rgbLed = new ChangeLedValue();
+        rgbLed.setValue("red" , 255);
+        Robot.oi.greenOn = true;
+>>>>>>> YashP
         
     }
 
