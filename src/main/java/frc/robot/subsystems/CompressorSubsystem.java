@@ -21,16 +21,21 @@ public class CompressorSubsystem extends Subsystem {
   Preferences prefs;
   Compressor compressor;
 
-  @Override
-  public void initDefaultCommand() {
+  public CompressorSubsystem() {
+    super();
     compressor = new Compressor(0);
-
-		prefs = Preferences.getInstance();
-		compressor.setClosedLoopControl(prefs.getBoolean("RunCompressor", false));
+    stopCompressor();
   }
 
+  @Override
+  public void initDefaultCommand() {
+  }
+
+  public void stopCompressor() {
+    compressor.setClosedLoopControl(false);
+  }
   public void runCompressor() {
-		compressor.setClosedLoopControl(prefs.getBoolean("RunCompressor", false));
+		compressor.setClosedLoopControl(true);
   }
 
   public void updateSmartDashboard() {

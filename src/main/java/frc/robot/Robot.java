@@ -22,6 +22,7 @@ public class Robot extends TimedRobot {
 	public static Drive drive = new Drive();
 	public static SolenoidSubsystem solSub;	
 	private static double robotSpeed = 0.35;
+	public static CompressorSubsystem compSub;
 
 	private Preferences prefs;
 
@@ -40,6 +41,7 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		RobotMap.init();
 		solSub = new SolenoidSubsystem();
+		compSub = new CompressorSubsystem();
 		oi = new OI();
 
 		prefs = Preferences.getInstance();
@@ -92,7 +94,8 @@ public class Robot extends TimedRobot {
 		Scheduler.getInstance().run();
 
 		robotSpeed = prefs.getDouble("RobotSpeed", 0.35);
-
+		compSub.updateSmartDashboard();
+		
 		//dimLED();
 	}
 
