@@ -11,15 +11,16 @@ public class RunBlueOff extends Command{
   
  
     protected void initialize(){
-        NetworkTableInstance inst =  NetworkTableInstance.getDefault();
-        NetworkTable table = inst.getTable("rgbled");
-        NetworkTableEntry entry = table.getEntry("blue");
-        entry.setValue(0);
+//        NetworkTableInstance inst =  NetworkTableInstance.getDefault();
+//        NetworkTable table = inst.getTable("rgbled");
+//        NetworkTableEntry entry = table.getEntry("blue");
+///        entry.setValue(0);
         Robot.oi.blueOn = false;
         
     }
 
     protected void execute(){
+        Robot.compSub.stopCompressor();
     }
     protected boolean isFinished(){
         return true;

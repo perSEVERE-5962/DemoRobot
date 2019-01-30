@@ -4,6 +4,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.Preferences;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.*;
 
@@ -20,6 +21,16 @@ public class Robot extends TimedRobot {
 	public static OI oi;
 	public static Drive drive = new Drive();
 	public static SolenoidSubsystem solSub;	
+	private static double robotSpeed = 0.35;
+	public static CompressorSubsystem compSub;
+
+	private Preferences prefs;
+
+
+	public static double getRobotSpeed(){
+		return robotSpeed;
+	}
+
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -29,8 +40,12 @@ public class Robot extends TimedRobot {
 
 	public void robotInit() {
 		RobotMap.init();
-		oi = new OI();
 		solSub = new SolenoidSubsystem();
+		compSub = new CompressorSubsystem();
+		oi = new OI();
+
+		prefs = Preferences.getInstance();
+		robotSpeed = prefs.getDouble("RobotSpeed", 0.35);
 	}
 	
   	/**
@@ -78,7 +93,10 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
-		dimLED();
+		robotSpeed = prefs.getDouble("RobotSpeed", 0.35);
+		compSub.updateSmartDashboard();
+		
+		//dimLED();
 	}
 
 	private void dimLED() {
@@ -104,6 +122,5 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-	}
-	
+	}	
 }
