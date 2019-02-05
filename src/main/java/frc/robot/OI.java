@@ -22,7 +22,6 @@ public class OI {
 	public JoystickButton xBoxGreen;
 	public JoystickButton xBoxRed;
 	public JoystickButton xBoxBlue;
-	public JoystickButton xBoxYellow;
 	public boolean redOn = false;
 	public boolean greenOn = false;
 	public boolean blueOn = false;
@@ -41,8 +40,6 @@ public class OI {
 		xBoxBlue = new JoystickButton(gamepad1 , 3);
 		xBoxBlue.whenPressed(new RunBlueOn());
 		xBoxBlue.whenReleased(new RunBlueOff());	
-		xBoxYellow = new JoystickButton(gamepad1, 4);
-		xBoxYellow.toggleWhenPressed(new SolenoidCommand());
 	}
 	
 	public void startDriveCommand() {

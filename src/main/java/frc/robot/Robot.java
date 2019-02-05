@@ -20,7 +20,6 @@ public class Robot extends TimedRobot {
 
 	public static OI oi;
 	public static Drive drive = new Drive();
-	public static SolenoidSubsystem solSub;	
 	private static double robotSpeed = 0.35;
 
 	private Preferences prefs;
@@ -39,7 +38,6 @@ public class Robot extends TimedRobot {
 
 	public void robotInit() {
 		RobotMap.init();
-		solSub = new SolenoidSubsystem();
 		oi = new OI();
 
 		prefs = Preferences.getInstance();
