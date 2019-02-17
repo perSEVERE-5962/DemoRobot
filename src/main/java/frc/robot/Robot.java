@@ -6,7 +6,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.*;
-
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /* The VM is configured to automatically run this class, and to call the
@@ -19,7 +20,8 @@ public class Robot extends TimedRobot {
 
 	public static OI oi;
 	public static Drive drive = new Drive();
-	public static SolenoidSubsystem solSub;	
+	public static SolenoidSubsystem solSub = new SolenoidSubsystem();
+	public static DigitalInput digitalinput = new DigitalInput(1);	
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -30,7 +32,10 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		RobotMap.init();
 		oi = new OI();
-		solSub = new SolenoidSubsystem();
+	}
+	public boolean GetDigitalInput(){
+		SmartDashboard.putString("getdigitalinput", ""+digitalinput.get());
+		return digitalinput.get();
 	}
 	
   	/**
@@ -104,6 +109,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+		GetDigitalInput();
 	}
 	
 }

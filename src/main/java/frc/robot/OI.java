@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -26,6 +27,7 @@ public class OI {
 	public boolean redOn = false;
 	public boolean greenOn = false;
 	public boolean blueOn = false;
+	
 	SolenoidCommand solenoidCommand = new SolenoidCommand();
 
 
@@ -51,7 +53,8 @@ public class OI {
 	Command command = new RunJoystickTank();
 	command.start();
 	}
-	
+
+
 	public double joystickLeftAxis() {
 		return joystickLeft.getRawAxis(1);
 	}
